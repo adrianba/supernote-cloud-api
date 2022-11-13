@@ -1,4 +1,4 @@
-import SHA256 from "./SHA256";
+import SHA256 from "./sha256";
 import fetch from "node-fetch";
 
 export async function login(email: string, password: string) {
