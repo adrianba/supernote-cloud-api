@@ -12,6 +12,7 @@ jobs:
           npm config set //npm.pkg.github.com/:_authToken $TOKEN
           npm install
           npm run build
+          npm test
           npm publish
         env:
           TOKEN: ${{secrets.GITHUB_TOKEN}}

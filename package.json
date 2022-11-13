@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Access SuperNote Cloud Storage",
   "main": "./lib/index.js",
+  "files": [
+    "./lib"
+  ],
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
