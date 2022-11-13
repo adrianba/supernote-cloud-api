@@ -1,20 +1,34 @@
 {
   "name": "supernote-cloud-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Access SuperNote Cloud Storage",
+  "main": "./lib/index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adrianba/supernote-cloud-api.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "SuperNote",
+    "Cloud API",
+    "A5X",
+    "A6X"
+  ],
+  "author": "Ade Bateman",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/adrianba/supernote-cloud-api/issues"
   },
-  "homepage": "https://github.com/adrianba/supernote-cloud-api#readme"
+  "homepage": "https://github.com/adrianba/supernote-cloud-api#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "typescript": "^4.8.4"
+  },
+  "typings": "./lib/index.d.ts",
+  "dependencies": {
+    "node-fetch": "^3.3.0"
+  }
 }

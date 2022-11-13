@@ -5,6 +5,8 @@
  *
  * Original code by Angel Marin, Paul Johnston.
  *
+ * @param {string} s
+ * @returns {string}
  **/
 export default function SHA256(s) {
   const chrsz = 8
