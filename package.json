@@ -31,6 +31,7 @@
   "homepage": "https://github.com/adrianba/supernote-cloud-api#readme",
   "devDependencies": {
     "@types/chai": "^4.3.4",
+    "@types/js-md5": "^0.4.3",
     "@types/mocha": "^10.0.0",
     "@types/node": "^18.11.9",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
@@ -46,6 +47,7 @@
   },
   "typings": "./lib/index.d.ts",
   "dependencies": {
+    "js-md5": "^0.7.3",
     "node-fetch": "^3.3.0"
   },
   "publishConfig": {
