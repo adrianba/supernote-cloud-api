@@ -2,7 +2,7 @@ import SHA256 from "./sha256.js";
 import fetch from "node-fetch";
 
 export async function login(email: string, password: string) {
-  let { randomCode, timestamp } = await getRandomCode(email);
+  const { randomCode, timestamp } = await getRandomCode(email);
   return await getAccessToken(email, password, randomCode, timestamp);
 }
 
@@ -62,7 +62,7 @@ async function getAccessToken(
 }
 
 async function postJson(url: string, payload: any, token?: string): Promise<any> {
-  let headers: HeadersInit = { "Content-Type": "application/json" };
+  const headers: HeadersInit = { "Content-Type": "application/json" };
   if (token) {
     headers["x-access-token"] = token;
   }
