@@ -12,7 +12,9 @@ describe("Tests", function () {
     it("success", async function () {
       const email = "email@example.com"
       const scope = nock("https://cloud.supernote.com")
-        .post("/api/official/user/query/random/code"/*, { countryCode: 93, account: email }*/)
+        .post("/api/official/user/query/random/code", (body) =>
+          body.countryCode == 93 && body.account == email
+        )
         .reply(200, {
           "success": true,
           "errorCode": null,
@@ -20,7 +22,9 @@ describe("Tests", function () {
           "randomCode": "12345678",
           "timestamp": 1234567890123
         })
-        .post("/api/official/user/account/login/new")
+        .post("/api/official/user/account/login/new", (body) =>
+          body.countryCode == 93 && body.account == email && body.password == "4d7b223baa98f7cbaf870e309a1335e4b538bb56e3a4604575917fdd45c3ec0e"
+        )
         .reply(200, {
           "success": true,
           "errorCode": null,
@@ -35,8 +39,17 @@ describe("Tests", function () {
           "soldOutCount": 0
         });
       let token = await login(email, "00000000");
-      assert.notEqual(token, null);
       assert.equal(token, "__token__");
+      scope.done();
+    });
+
+    beforeEach(() => {
+      nock.disableNetConnect();
+    });
+
+    afterEach(() => {
+      nock.cleanAll();
+      nock.enableNetConnect();
     });
   });
 });
