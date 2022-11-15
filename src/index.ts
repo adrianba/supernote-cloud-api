@@ -1,6 +1,10 @@
-import SHA256 from "./sha256.js";
 import fetch from "node-fetch";
 import md5 from "js-md5";
+import shajs from "sha.js";
+
+function sha256(s: string) {
+  return shajs('sha256').update(s).digest('hex');
+}
 
 export async function login(email: string, password: string) {
   const { randomCode, timestamp } = await getRandomCode(email);
@@ -43,7 +47,7 @@ async function getAccessToken(
   randomCode: string,
   timestamp: number
 ): Promise<string> {
-  const pd = SHA256(md5(password) + randomCode);
+  const pd = sha256(md5(password) + randomCode);
   const payload = {
     countryCode: "93",
     account: email,

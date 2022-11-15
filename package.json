@@ -34,6 +34,7 @@
     "@types/js-md5": "^0.4.3",
     "@types/mocha": "^10.0.0",
     "@types/node": "^18.11.9",
+    "@types/sha.js": "^2.4.0",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",
     "chai": "^4.3.7",
@@ -48,7 +49,8 @@
   "typings": "./lib/index.d.ts",
   "dependencies": {
     "js-md5": "^0.7.3",
-    "node-fetch": "^3.3.0"
+    "node-fetch": "^3.3.0",
+    "sha.js": "^2.4.11"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/",
