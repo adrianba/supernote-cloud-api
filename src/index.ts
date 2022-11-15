@@ -6,11 +6,28 @@ function sha256(s: string) {
   return shajs('sha256').update(s).digest('hex');
 }
 
-export async function login(email: string, password: string) {
+/**
+ * Login to SuperNote Cloud API.
+ * @param {string} email User e-mail address
+ * @param {string} password User password
+ * @returns {Promise<string>} Access token to access storage
+ */
+export async function login(email: string, password: string): Promise<string> {
   const { randomCode, timestamp } = await getRandomCode(email);
   return await getAccessToken(email, password, randomCode, timestamp);
 }
 
+/**
+ * FileInfo - Details of a file or folder
+ * @prop id - Identifier
+ * @prop directoryId - Folder identifier containing this item
+ * @prop fileName - Name of the file
+ * @prop size - Size of the file, or 0 for folder
+ * @prop md5 - MD5 checksum of file, or "" for folder
+ * @prop isFolder - "Y" for folder, or "N" for file
+ * @prop createTime - Number representing create time
+ * @prop updateTime - Number representing last updated time
+ */
 export type FileInfo = {
   "id": string;
   "directoryId": string;
@@ -22,6 +39,12 @@ export type FileInfo = {
   "updateTime": number;
 };
 
+/**
+ * Return contents of folder.
+ * @param {string} token Access token from login()
+ * @param {string?} directoryId Identifier of folder to list (default is root folder)
+ * @returns {Promise<FileInfo>} List of files and folders.
+ */
 export async function fileList(token: string, directoryId?: string): Promise<FileInfo[]> {
   const payload = {
     directoryId: directoryId || 0,
@@ -34,6 +57,12 @@ export async function fileList(token: string, directoryId?: string): Promise<Fil
   return data.userFileVOList;
 }
 
+/**
+ * Obtain URL to contents of file.
+ * @param {string} token Access token from login()
+ * @param {string} id Identifier of file
+ * @returns {Promise<string>} URL of file
+ */
 export async function fileUrl(token: string, id: string): Promise<string> {
   const payload = {
     id,
