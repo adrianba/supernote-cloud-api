@@ -1,6 +1,6 @@
 {
   "name": "@adrianba/supernote-cloud-api",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Access SuperNote Cloud Storage",
   "main": "./lib/index.js",
   "files": [
