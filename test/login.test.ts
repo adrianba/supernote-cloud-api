@@ -3,10 +3,6 @@ import { login } from "../src/index.js";
 import nock from "nock";
 
 describe("login tests", function () {
-  it("truth", function () {
-    assert.equal(!!login, true);
-  });
-
   it("success", async function () {
     const email = "email@example.com"
     const scope = nock("https://cloud.supernote.com")

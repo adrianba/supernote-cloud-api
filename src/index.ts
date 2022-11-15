@@ -11,8 +11,19 @@ export async function login(email: string, password: string) {
   return await getAccessToken(email, password, randomCode, timestamp);
 }
 
-export async function fileList(token: string, directoryId?: string): Promise<any> {
-  const payload: any = {
+export type FileInfo = {
+  "id": string;
+  "directoryId": string;
+  "fileName": string;
+  "size": number;
+  "md5": string;
+  "isFolder": string;
+  "createTime": number;
+  "updateTime": number;
+};
+
+export async function fileList(token: string, directoryId?: string): Promise<FileInfo[]> {
+  const payload = {
     directoryId: directoryId || 0,
     pageNo: 1,
     pageSize: 100,
@@ -66,6 +77,7 @@ async function getAccessToken(
   return data.token;
 }
 
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 async function postJson(url: string, payload: any, token?: string): Promise<any> {
   const headers: HeadersInit = {
     "Content-Type": "application/json",
