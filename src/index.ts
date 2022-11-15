@@ -67,7 +67,10 @@ async function getAccessToken(
 }
 
 async function postJson(url: string, payload: any, token?: string): Promise<any> {
-  const headers: HeadersInit = { "Content-Type": "application/json" };
+  const headers: HeadersInit = {
+    "Content-Type": "application/json",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+  };
   if (token) {
     headers["x-access-token"] = token;
   }
