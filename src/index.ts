@@ -18,15 +18,15 @@ export async function login(email: string, password: string): Promise<string> {
 }
 
 /**
- * FileInfo - Details of a file or folder
- * @prop id - Identifier
- * @prop directoryId - Folder identifier containing this item
- * @prop fileName - Name of the file
- * @prop size - Size of the file, or 0 for folder
- * @prop md5 - MD5 checksum of file, or "" for folder
- * @prop isFolder - "Y" for folder, or "N" for file
- * @prop createTime - Number representing create time
- * @prop updateTime - Number representing last updated time
+ * Details of a file or folder.
+ * @property {string} id - Identifier
+ * @property {string} directoryId - Folder identifier containing this item
+ * @property {string} fileName - Name of the file
+ * @property {number} size - Size of the file, or 0 for folder
+ * @property {string} md5 - MD5 checksum of file, or "" for folder
+ * @property {string} isFolder - "Y" for folder, or "N" for file
+ * @property {number} createTime - Number representing create time
+ * @property {number} updateTime - Number representing last updated time
  */
 export type FileInfo = {
   "id": string;
@@ -54,7 +54,7 @@ export async function fileList(token: string, directoryId?: string): Promise<Fil
     sequence: "desc",
   };
   const data = await postJson("https://cloud.supernote.com/api/file/list/query", payload, token);
-  return data.userFileVOList;
+  return data.userFileVOList as FileInfo[];
 }
 
 /**
