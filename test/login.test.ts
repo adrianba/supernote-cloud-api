@@ -44,9 +44,7 @@ describe("login tests", function () {
   it("invalid", async function () {
     const email = "email@example.com"
     const scope = nock("https://cloud.supernote.com")
-      .post("/api/official/user/query/random/code", (body) =>
-        body.countryCode == 93 && body.account == email
-      )
+      .post("/api/official/user/query/random/code")
       .reply(200, {
         "success": true,
         "errorCode": null,
