@@ -1,6 +1,6 @@
 {
   "name": "supernote-cloud-api",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Access SuperNote Cloud Storage",
   "main": "./lib/index.js",
   "files": [
