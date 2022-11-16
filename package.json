@@ -1,5 +1,5 @@
 {
-  "name": "@adrianba/supernote-cloud-api",
+  "name": "supernote-cloud-api",
   "version": "1.0.5",
   "description": "Access SuperNote Cloud Storage",
   "main": "./lib/index.js",

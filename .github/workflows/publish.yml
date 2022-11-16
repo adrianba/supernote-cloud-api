@@ -6,12 +6,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: node
+          registry-url: "https://registry.npmjs.org"
       - run: |
-          npm config set //npm.pkg.github.com/:_authToken $TOKEN
-          npm install
+          npm ci
           npm run build
           npm test
           npm publish
         env:
-          TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
