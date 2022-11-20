@@ -12,10 +12,11 @@ const config = {
   entryPoints,
   outfile: "./lib/index.js",
   bundle: true,
-  minify: true,
+  minify: false,
   platform: "node",
   sourcemap: true,
   target: "node18",
+  format: "esm",
   tsconfig: "./tsconfig.build.json",
   plugins: [nodeExternalsPlugin()],
 };
