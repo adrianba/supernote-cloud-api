@@ -10,7 +10,7 @@
   "scripts": {
     "prebuild": "rimraf lib",
     "build": "tsc -p tsconfig.build.json && node ./esbuild.config.cjs",
-    "builddoc": "jsdoc2md --files ./src/*.ts --configure ./jsdoc2md.json | cat README.skel - > README.md",
+    "builddoc": "jsdoc2md --files ./src/*.ts --configure ./jsdoc2md.json --template README.skel > README.md",
     "lint": "eslint --fix 'src/**/*.ts'",
     "test": "mocha",
     "prepare": "is-ci || husky install",

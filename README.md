@@ -6,7 +6,6 @@
 observing the network calls from the Supernote web app and may stop working if Supernote modifies
 the cloud API.
 
-
 <a name="module_supernote-cloud-api"></a>
 
 ## supernote-cloud-api
