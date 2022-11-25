@@ -1,3 +1,7 @@
+/**
+ * @module supernote-cloud-api
+ */
+
 import fetch from "node-fetch";
 import md5 from "js-md5";
 import shajs from "sha.js";
@@ -8,9 +12,10 @@ function sha256(s: string) {
 
 /**
  * Login to SuperNote Cloud API.
+ * @async
  * @param {string} email User e-mail address
  * @param {string} password User password
- * @returns {Promise<string>} Access token to access storage
+ * @return {Promise<string>} Access token to access storage
  */
 export async function login(email: string, password: string): Promise<string> {
   const { randomCode, timestamp } = await getRandomCode(email);
@@ -41,9 +46,10 @@ export type FileInfo = {
 
 /**
  * Return contents of folder.
+ * @async
  * @param {string} token Access token from login()
  * @param {string?} directoryId Identifier of folder to list (default is root folder)
- * @returns {Promise<FileInfo>} List of files and folders.
+ * @return {Promise<FileInfo>} List of files and folders.
  */
 export async function fileList(token: string, directoryId?: string): Promise<FileInfo[]> {
   const payload = {
@@ -59,9 +65,10 @@ export async function fileList(token: string, directoryId?: string): Promise<Fil
 
 /**
  * Obtain URL to contents of file.
+ * @async
  * @param {string} token Access token from login()
  * @param {string} id Identifier of file
- * @returns {Promise<string>} URL of file
+ * @return {Promise<string>} URL of file
  */
 export async function fileUrl(token: string, id: string): Promise<string> {
   const payload = {

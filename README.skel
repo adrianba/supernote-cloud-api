@@ -1,0 +1,9 @@
+# Supernote Cloud Storage API
+
+[![Build and test badge](https://github.com/adrianba/supernote-cloud-api/actions/workflows/build.yml/badge.svg)](https://github.com/adrianba/supernote-cloud-api/actions/workflows/build.yml) [![npm version badge](https://img.shields.io/npm/v/supernote-cloud-api)](https://www.npmjs.com/package/supernote-cloud-api) ![license badge](https://img.shields.io/github/license/adrianba/supernote-cloud-api)
+
+(Unofficial) API for accessing the cloud storage for Supernote tablets. This library was created by
+observing the network calls from the Supernote web app and may stop working if Supernote modifies
+the cloud API.
+
+
