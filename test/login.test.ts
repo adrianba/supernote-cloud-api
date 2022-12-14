@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { login } from "../src/index.js";
+import supernote from "../src/index.js";
 import nock from "nock";
 
 describe("login tests", function () {
@@ -32,7 +32,7 @@ describe("login tests", function () {
         "isBindEquipment": null,
         "soldOutCount": 0
       });
-    let token = await login(email, "00000000");
+    let token = await supernote.login(email, "00000000");
     assert.equal(token, "__token__");
     scope.done();
   });
@@ -62,7 +62,7 @@ describe("login tests", function () {
         "isBindEquipment": null,
         "soldOutCount": 0
       });
-    let token = await login(email, "00000000");
+    let token = await supernote.login(email, "00000000");
     assert.equal(token, null);
     scope.done();
   });

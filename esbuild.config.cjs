@@ -5,8 +5,9 @@ const { nodeExternalsPlugin } = require("esbuild-node-externals");
 
 // Find all .ts files - alternative is to just include ./src/index.ts and
 // esbuild will recursively find all dependencies from that single file
-const glob = require("glob");
-const entryPoints = glob.sync("./src/**/*.ts");
+//const glob = require("glob");
+//const entryPoints = glob.sync("./src/**/*.ts");
+const entryPoints = ["./src/index.ts"];
 
 const config = {
   entryPoints,

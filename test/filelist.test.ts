@@ -1,12 +1,8 @@
 import { assert } from "chai";
-import { fileList } from "../src/index.js";
+import supernote from "../src/index.js";
 import nock from "nock";
 
 describe("fileList tests", function () {
-  it("truth", function () {
-    assert.equal(!!fileList, true);
-  });
-
   it("root", async function () {
     const token = "__token__"
     const scope = nock("https://cloud.supernote.com", {
@@ -43,7 +39,7 @@ describe("fileList tests", function () {
           },
         ]
       });
-    let list = await fileList(token);
+    let list = await supernote.fileList(token);
     assert.equal(list.length, 2);
     assert.equal(list[0].isFolder, "Y");
     assert.equal(list[1].isFolder, "N");
@@ -89,7 +85,7 @@ describe("fileList tests", function () {
           },
         ]
       });
-    let list = await fileList(token, folder);
+    let list = await supernote.fileList(token, folder);
     assert.equal(list.length, 2);
     assert.equal(list[0].isFolder, "Y");
     assert.equal(list[1].isFolder, "N");
