@@ -15,7 +15,7 @@ import md5 from "js-md5";
  * @param {string} localPath Local file path to sync to
  */
 export async function syncFiles(token: string, localPath: string) {
-  syncSupernoteDirectory(token, localPath);
+  await syncSupernoteDirectory(token, localPath);
 }
 
 async function syncSupernoteDirectory(token: string, localPath: string, directoryId?: string) {
