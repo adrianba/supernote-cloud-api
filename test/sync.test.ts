@@ -1,21 +1,85 @@
+import mockfs from "mock-fs";
+import nock from "nock";
 import { assert } from "chai";
 import supernote from "../src/index.js";
-import nock from "nock";
+import { createScope, queueFileList, MockFileListItem } from "./api.mock.js";
 
 describe("syncFiles tests", function () {
-  it("truth", function () {
-    assert.equal(!!supernote.syncFiles, true);
+  it("iterate into folder", async () => {
+    const token = "__token__"
+    const scope = createScope(token);
+
+    queueFileList(scope, "0", [
+      {
+        name: "Note",
+        isFolder: true,
+        updateTime: 1658265084000
+      }
+    ]);
+    queueFileList(scope, "1", []);
+    mockfs({});
+
+    await supernote.syncFiles(token, ".");
+
+    assert(scope.isDone(), "network requests incomplete");
   });
 
-  //TODO: need to add sync tests
+  it("check matching root file", async () => {
+    const token = "__token__"
+    const scope = createScope(token);
 
-  it("sync", async () => {
-    /*
-    let token = await supernote.login("a", "b");
-    console.log(token);
-    await supernote.syncFiles(token, "/tmp/sync");
-    */
-  }).timeout(60000);
+    let fileItem: MockFileListItem =
+    {
+      name: "data.txt",
+      isFolder: false,
+      data: Buffer.from("hello", "utf8"),
+      updateTime: 1658265084000
+    };
+    queueFileList(scope, "0", [fileItem]);
+    mockfs({
+      [fileItem.name]: mockfs.file({
+        content: fileItem.data,
+        mtime: new Date(fileItem.updateTime ?? 0)
+      })
+    });
+
+    await supernote.syncFiles(token, ".");
+
+    assert(scope.isDone(), "network requests incomplete");
+  });
+
+  it("check matching subfolder file", async () => {
+    const token = "__token__"
+    const scope = createScope(token);
+
+    queueFileList(scope, "0", [
+      {
+        name: "Note",
+        isFolder: true,
+        updateTime: 1658265084000
+      }
+    ]);
+    let fileItem: MockFileListItem =
+    {
+      name: "data.txt",
+      isFolder: false,
+      data: Buffer.from("hello", "utf8"),
+      updateTime: 1658265084000
+    };
+    queueFileList(scope, "1", [fileItem]);
+    mockfs({
+      "Note": {
+        [fileItem.name]: mockfs.file({
+          content: fileItem.data,
+          mtime: new Date(fileItem.updateTime ?? 0)
+        })
+      }
+    });
+
+    await supernote.syncFiles(token, ".");
+
+    assert(scope.isDone(), "network requests incomplete");
+  });
 
   beforeEach(() => {
     nock.disableNetConnect();
@@ -24,5 +88,6 @@ describe("syncFiles tests", function () {
   afterEach(() => {
     nock.cleanAll();
     nock.enableNetConnect();
+    mockfs.restore();
   });
 });
