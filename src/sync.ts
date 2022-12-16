@@ -13,6 +13,7 @@ import md5 from "js-md5";
  * @async
  * @param {string} token Access token from login()
  * @param {string} localPath Local file path to sync to
+ * @returns {Promise<void>}
  */
 export async function syncFiles(token: string, localPath: string) {
   await syncSupernoteDirectory(token, localPath);
