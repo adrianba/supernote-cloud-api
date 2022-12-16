@@ -1,7 +1,3 @@
-/**
- * @module supernote-cloud-api
- */
-
 import fetch from "node-fetch";
 import md5 from "js-md5";
 import shajs from "sha.js";
