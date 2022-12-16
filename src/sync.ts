@@ -40,6 +40,7 @@ async function syncSupernoteFile(token: string, localPath: string, item: superno
 
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   try { localInfo = await fs.stat(localPath); } catch (e: any) {
+    /* c8 ignore next */
     if (e.code !== 'ENOENT') throw e;
     console.log(`  Not found: ${localPath}`);
   }
@@ -92,7 +93,9 @@ async function computeFileMd5(filePath: string) {
 async function downloadFile(url: string, filePath: string, updateTime: number) {
   // Make sure folder exists
   const folder = path.dirname(filePath);
-  try { await fs.mkdir(folder, { recursive: true }) } catch { /* swallow error */ }
+  try { await fs.mkdir(folder, { recursive: true }) }
+  /* c8 ignore next */
+  catch { /* swallow error */ }
 
   const res = await fetch(url);
   if (!res.ok) {
@@ -108,6 +111,7 @@ async function downloadFile(url: string, filePath: string, updateTime: number) {
         res.body.pipe(fileStream);
         res.body.on("error", reject);
         fileStream.on("finish", resolve);
+        /* c8 ignore next 3 */
       } else {
         reject("Missing body");
       }

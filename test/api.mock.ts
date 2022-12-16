@@ -45,3 +45,11 @@ function buffer2md5(buf: Buffer) {
   hash.update(buf);
   return hash.hex();
 }
+
+export function queueFileDownload(scope: nock.Scope, host: string, item: MockFileListItem) {
+  scope
+    .post("/api/file/download/url")
+    .reply(200, {
+      url: host + item.name
+    });
+}
